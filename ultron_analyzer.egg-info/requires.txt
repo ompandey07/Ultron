@@ -1,0 +1,15 @@
+requests>=2.25.0
+beautifulsoup4>=4.9.0
+
+[dev]
+pytest>=6.0
+black
+flake8
+mypy
+
+[excel]
+openpyxl>=3.0.0
+
+[full]
+openpyxl>=3.0.0
+beautifulsoup4>=4.9.0

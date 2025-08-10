@@ -1,0 +1,3 @@
+[console_scripts]
+ultron = ultron.cli:main
+ultron-analyzer = ultron.cli:main

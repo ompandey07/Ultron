@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
-🤖 ULTRON - Advanced Site Performance Analyzer 🤖
-Comprehensive tool for analyzing website performance, security, SEO, and accessibility.
-Get instant insights and actionable recommendations to boost your website performance!
+🤖 Ultron Analyzer - Core Analysis Engine
+Main analyzer class for Ultron site performance analysis
 """
 
 import requests
@@ -27,7 +26,6 @@ try:
     EXCEL_AVAILABLE = True
 except ImportError:
     EXCEL_AVAILABLE = False
-    print("⚠️ Excel generation not available. Install with: pip install openpyxl")
 
 # Suppress SSL warnings for testing
 warnings.filterwarnings('ignore', message='Unverified HTTPS request')
@@ -552,13 +550,13 @@ class UltronAnalyzer:
         domain = urlparse(results['url']).netloc
         
         if format == 'json':
-            filename = f"site_report_{domain}_{timestamp}.json"
+            filename = f"ultron_report_{domain}_{timestamp}.json"
             with open(filename, 'w') as f:
                 json.dump(results, f, indent=2)
             print(f"\n💾 Report saved as: {filename}")
         
         elif format == 'html':
-            filename = f"site_report_{domain}_{timestamp}.html"
+            filename = f"ultron_report_{domain}_{timestamp}.html"
             html_report = self.generate_html_report(results)
             with open(filename, 'w') as f:
                 f.write(html_report)
@@ -568,7 +566,7 @@ class UltronAnalyzer:
             if not EXCEL_AVAILABLE:
                 print("❌ Excel generation not available. Install openpyxl: pip install openpyxl")
                 return
-            filename = f"site_report_{domain}_{timestamp}.xlsx"
+            filename = f"ultron_report_{domain}_{timestamp}.xlsx"
             self.generate_excel_report(results, filename)
             print(f"\n💾 Excel report saved as: {filename}")
     
@@ -1155,12 +1153,11 @@ class UltronAnalyzer:
     
     def generate_html_report(self, results: Dict) -> str:
         """Generate HTML report"""
-        # This is a basic HTML template - you can enhance it further
         html = f"""
         <!DOCTYPE html>
         <html>
         <head>
-            <title>Site Performance Report - {results['url']}</title>
+            <title>🤖 Ultron Performance Report - {results['url']}</title>
             <style>
                 body {{ font-family: Arial, sans-serif; margin: 20px; }}
                 .header {{ background: #2c3e50; color: white; padding: 20px; }}
@@ -1171,7 +1168,7 @@ class UltronAnalyzer:
         </head>
         <body>
             <div class="header">
-                <h1>Site Performance Report</h1>
+                <h1>🤖 Ultron Performance Report</h1>
                 <p>{results['url']}</p>
                 <p>Generated: {results['timestamp']}</p>
             </div>
@@ -1190,134 +1187,3 @@ class UltronAnalyzer:
         </html>
         """
         return html
-
-def main():
-    """Interactive main function to run Ultron analyzer"""
-    print("🤖" * 60)
-    print("🚀 ULTRON - ADVANCED SITE PERFORMANCE ANALYZER 🚀")
-    print("🤖" * 60)
-    print("⚡ Analyze • Optimize • Dominate ⚡")
-    print()
-    print("Welcome to Ultron! The ultimate tool to:")
-    print("🎯 Analyze your website's performance in seconds")
-    print("📊 Generate professional Excel reports")
-    print("💡 Get actionable recommendations to boost speed")
-    print("🚀 Outperform your competition!")
-    print("=" * 60)
-    
-    # Check if Excel generation is available
-    if not EXCEL_AVAILABLE:
-        print("⚠️ Excel generation requires openpyxl. Install with:")
-        print("   pip install openpyxl")
-        print()
-    
-    while True:
-        # Get URL from user
-        print("\n🌐 Enter your website URL for Ultron analysis:")
-        print("💡 Tip: Works with any website - yours or competitors!")
-        url = input("🔗 URL: ").strip()
-        
-        if not url:
-            print("❌ Please enter a valid URL")
-            continue
-        
-        # Validate and format URL
-        if not url.startswith(('http://', 'https://')):
-            url = 'https://' + url
-        
-        print(f"\n✅ Ultron is analyzing: {url}")
-        print("⚡ Sit back and watch the magic happen...")
-        
-        # Ask for additional options
-        print("\n📋 Choose your Ultron report format:")
-        print("1. 🤖 Excel Report (Recommended - Professional & Detailed)")
-        print("2. 📄 JSON Report (Technical Data)") 
-        print("3. 🌐 HTML Report (Web Friendly)")
-        print("4. 📦 All Formats (Complete Package)")
-        print("5. 💻 Console Only (Quick Preview)")
-        
-        choice = input("\nSelect option (1-5) [Default: 1]: ").strip()
-        if not choice:
-            choice = "1"
-        
-        # Initialize Ultron analyzer
-        print(f"\n🔧 Initializing Ultron analyzer...")
-        analyzer = UltronAnalyzer(timeout=30, max_workers=8)
-        
-        try:
-            # Run comprehensive analysis
-            results = analyzer.run_comprehensive_check(url)
-            
-            # Always print results to console
-            analyzer.print_results(results)
-            
-            # Generate reports based on choice
-            if choice == "1" or choice == "4":
-                if EXCEL_AVAILABLE:
-                    analyzer.save_report(results, 'excel')
-                else:
-                    print("⚠️ Excel not available, saving as JSON instead")
-                    analyzer.save_report(results, 'json')
-            
-            if choice == "2" or choice == "4":
-                analyzer.save_report(results, 'json')
-            
-            if choice == "3" or choice == "4":
-                analyzer.save_report(results, 'html')
-            
-            # Performance summary
-            perf = results['performance']
-            insights_count = len(results['insights'])
-            
-            print(f"\n🤖 ULTRON SCORE SUMMARY:")
-            print("=" * 40)
-            print(f"   ⚡ Load Time: {perf['total_time']:.2f}s")
-            print(f"   📦 Page Size: {perf['page_size'] / 1024:.1f}KB")
-            print(f"   🔒 Security Score: {sum(results['security'].values())}/7")
-            print(f"   🔗 Broken Links: {len([l for l in results['links'] if l['is_broken']])}")
-            print(f"   💡 Issues Found: {insights_count}")
-            
-            # Performance rating
-            if insights_count == 0:
-                print(f"\n🏆 PERFECT SCORE! Your site is optimized!")
-                rating = "🏆 CHAMPION"
-            elif insights_count <= 3:
-                print(f"\n🥇 EXCELLENT! Minor tweaks for perfection")
-                rating = "🥇 ELITE"
-            elif insights_count <= 6:
-                print(f"\n🥈 GOOD! Some optimizations needed")
-                rating = "🥈 STRONG"
-            else:
-                print(f"\n🥉 NEEDS WORK! Multiple improvements required")
-                rating = "🥉 BEGINNER"
-            
-            print(f"🎯 Ultron Rating: {rating}")
-            
-            # Generate and display performance suggestions
-            suggestions = analyzer.generate_performance_suggestions(results)
-            analyzer.print_performance_suggestions(suggestions)
-        
-        except Exception as e:
-            print(f"\n❌ Ultron encountered an error analyzing the website: {e}")
-            print("\n🔍 This might be due to:")
-            print("   • Website is down or unreachable")
-            print("   • Network connectivity issues") 
-            print("   • Website blocking automated requests")
-            print("   • Invalid URL format")
-            print("\n💡 Try again with a different URL or check your connection")
-        
-        # Ask if user wants to analyze another website
-        print(f"\n" + "🤖" * 60)
-        another = input("🔄 Analyze another website with Ultron? (y/n) [y]: ").strip().lower()
-        if another == 'n' or another == 'no':
-            break
-    
-    print("\n🤖" * 60)
-    print("🚀 Thank you for using ULTRON! 🚀")
-    print("💡 Pro Tip: Implement our suggestions and re-run Ultron")
-    print("📈 Track your improvements and beat the competition!")
-    print("🏆 Share your perfect scores with #UltronOptimized")
-    print("🤖" * 60)
-
-if __name__ == "__main__":
-    main()

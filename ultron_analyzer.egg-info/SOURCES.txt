@@ -1,0 +1,16 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+requirements.txt
+setup.py
+ultron/__init__.py
+ultron/analyzer.py
+ultron/cli.py
+ultron/utils.py
+ultron_analyzer.egg-info/PKG-INFO
+ultron_analyzer.egg-info/SOURCES.txt
+ultron_analyzer.egg-info/dependency_links.txt
+ultron_analyzer.egg-info/entry_points.txt
+ultron_analyzer.egg-info/requires.txt
+ultron_analyzer.egg-info/top_level.txt
