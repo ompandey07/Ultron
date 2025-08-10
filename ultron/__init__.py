@@ -18,9 +18,9 @@ Example:
     >>> analyzer.print_results(results)
 """
 
-__version__ = "1.1"
-__author__ = "Your Name"
-__email__ = "your.email@example.com"
+__version__ = "1.2"
+__author__ = "Om Pandey"
+__email__ = "iamompandey.it@gmail.com"
 __license__ = "MIT"
 
 from .analyzer import (

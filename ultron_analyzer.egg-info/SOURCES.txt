@@ -6,7 +6,7 @@ pyproject.toml
 requirements.txt
 setup.py
 Assests/CLI.png
-Assests/Logo.jpg
+Assests/Logo.png
 Assests/Report1.png
 Assests/Report2.png
 Assests/Report3.png

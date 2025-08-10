@@ -17,7 +17,7 @@ with open('requirements.txt') as f:
 
 setup(
     name="ultron-analyzer",  # Change this if name is taken
-    version="1.1",
+    version="1.2",
     author="Om Pandey",  # Replace with your name
     author_email="iamompandey.it@gmail.com",  # Replace with your email
     description="🤖 Advanced website performance analyzer and optimizer",
@@ -39,6 +39,8 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.7",
