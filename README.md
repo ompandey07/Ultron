@@ -14,7 +14,7 @@ Ultron is a comprehensive Python tool for analyzing website performance, securit
 - 🎯 Rating system - Get scored from Beginner to Champion level
 - 🤖 Both CLI and Python API - Use in terminal or integrate into your projects
 
-![Ultron Logo](Assests/Logo.jpg)
+![Ultron Logo](Assests/Logo.png)
 
 ## Installation
 
