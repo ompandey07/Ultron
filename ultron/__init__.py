@@ -18,7 +18,7 @@ Example:
     >>> analyzer.print_results(results)
 """
 
-__version__ = "1.0.0"
+__version__ = "1.1"
 __author__ = "Your Name"
 __email__ = "your.email@example.com"
 __license__ = "MIT"

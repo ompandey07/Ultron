@@ -17,7 +17,7 @@ with open('requirements.txt') as f:
 
 setup(
     name="ultron-analyzer",  # Change this if name is taken
-    version="1.0.0",
+    version="1.1",
     author="Om Pandey",  # Replace with your name
     author_email="iamompandey.it@gmail.com",  # Replace with your email
     description="🤖 Advanced website performance analyzer and optimizer",

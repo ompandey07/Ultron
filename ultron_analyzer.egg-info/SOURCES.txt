@@ -1,9 +1,16 @@
+.gitignore
 LICENSE
 MANIFEST.in
 README.md
 pyproject.toml
 requirements.txt
 setup.py
+Assests/CLI.png
+Assests/Logo.jpg
+Assests/Report1.png
+Assests/Report2.png
+Assests/Report3.png
+Assests/Report4.png
 ultron/__init__.py
 ultron/analyzer.py
 ultron/cli.py
